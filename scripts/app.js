@@ -22,5 +22,6 @@ kid.addEventListener('click', (event) => {
     kid.select();
     kid.setSelectionRange(0, 99999);
     navigator.clipboard.writeText(kid.value);
+    alert("kid copied to clipboard");
     
 });
