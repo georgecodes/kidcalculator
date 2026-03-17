@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Body -->
+  <rect x="10" y="4" width="44" height="56" rx="6" fill="#3b3b3b"/>
+
+  <!-- Screen -->
+  <rect x="16" y="10" width="32" height="10" rx="2" fill="#c9d6a3"/>
+  <rect x="18" y="12" width="28" height="6" fill="#8a9b68"/>
+
+  <!-- Buttons -->
+  <!-- Row 1 -->
+  <rect x="16" y="26" width="8" height="8" fill="#d8cfc4"/>
+  <rect x="28" y="26" width="8" height="8" fill="#d8cfc4"/>
+  <rect x="40" y="26" width="8" height="8" fill="#a67c52"/>
+
+  <!-- Row 2 -->
+  <rect x="16" y="36" width="8" height="8" fill="#d8cfc4"/>
+  <rect x="28" y="36" width="8" height="8" fill="#d8cfc4"/>
+  <rect x="40" y="36" width="8" height="8" fill="#a67c52"/>
+
+  <!-- Row 3 -->
+  <rect x="16" y="46" width="20" height="8" fill="#d8cfc4"/>
+  <rect x="40" y="46" width="8" height="8" fill="#a67c52"/>
+</svg>
