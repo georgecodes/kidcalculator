@@ -1,14 +1,184 @@
 <html>
   <head>
-  	
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kid calculator</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace;
+        background: #0f1117;
+        color: #e2e8f0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+      }
+
+      .card {
+        background: #1a1d27;
+        border: 1px solid #2d3148;
+        border-radius: 12px;
+        padding: 2rem;
+        width: 100%;
+        max-width: 900px;
+        box-shadow: 0 4px 32px rgba(0, 0, 0, 0.4);
+      }
+
+      h1 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #a78bfa;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        margin-bottom: 0.25rem;
+      }
+
+      .subtitle {
+        font-size: 0.8rem;
+        color: #64748b;
+        margin-bottom: 1.5rem;
+      }
+
+      label {
+        display: block;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: #94a3b8;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.5rem;
+      }
+
+      textarea.target {
+        width: 100%;
+        height: 220px;
+        background: #0f1117;
+        border: 1px solid #2d3148;
+        border-radius: 8px;
+        color: #e2e8f0;
+        font-family: "SF Mono", "Fira Code", "Cascadia Code", monospace;
+        font-size: 0.75rem;
+        line-height: 1.6;
+        padding: 0.75rem 1rem;
+        resize: vertical;
+        outline: none;
+        transition: border-color 0.15s;
+      }
+
+      textarea.target:focus {
+        border-color: #a78bfa;
+      }
+
+      textarea.target::placeholder {
+        color: #3d4466;
+      }
+
+      .output-row {
+        margin-top: 1.25rem;
+        position: relative;
+      }
+
+      .kid-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      input.kid {
+        flex: 1;
+        background: #0f1117;
+        border: 1px solid #2d3148;
+        border-radius: 8px;
+        color: #34d399;
+        font-family: "SF Mono", "Fira Code", "Cascadia Code", monospace;
+        font-size: 0.85rem;
+        padding: 0.65rem 1rem;
+        outline: none;
+        cursor: pointer;
+        transition: border-color 0.15s;
+      }
+
+      input.kid:focus {
+        border-color: #34d399;
+      }
+
+      input.kid::placeholder {
+        color: #3d4466;
+      }
+
+      .copy-btn {
+        background: #2d3148;
+        border: 1px solid #3d4466;
+        border-radius: 8px;
+        color: #94a3b8;
+        font-size: 0.75rem;
+        padding: 0.65rem 1rem;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: background 0.15s, color 0.15s;
+      }
+
+      .copy-btn:hover {
+        background: #3d4466;
+        color: #e2e8f0;
+      }
+
+      .toast {
+        display: none;
+        margin-top: 0.75rem;
+        background: #064e3b;
+        border: 1px solid #065f46;
+        border-radius: 6px;
+        color: #6ee7b7;
+        font-size: 0.8rem;
+        padding: 0.5rem 0.85rem;
+        animation: fadeIn 0.15s ease;
+      }
+
+      .toast.show {
+        display: block;
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-4px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+
+      .hint {
+        margin-top: 1.25rem;
+        font-size: 0.75rem;
+        color: #3d4466;
+      }
+    </style>
   </head>
   <body>
-  	<div >
-  		<textarea class="target" rows="40" cols="70" placeholder="Paste an x509 certificate here"></textarea>
+    <div class="card">
+      <h1>kid calculator</h1>
+      <p class="subtitle">SHA-256 thumbprint &rarr; base64url key ID</p>
 
-  	</div>
-  	<input type="text" class="kid" size="70"/ placeholder="kid">
-  	<script src="https://cdn.jsdelivr.net/npm/node-forge@1.0.0/dist/forge.min.js"></script>
-  	<script type="text/javascript" src="scripts/app.js"></script>
+      <label>x509 certificate (PEM)</label>
+      <textarea class="target" placeholder="Paste a PEM certificate here…"></textarea>
+
+      <div class="output-row">
+        <label>key id (kid)</label>
+        <div class="kid-wrapper">
+          <input type="text" class="kid" placeholder="kid will appear here" readonly />
+          <button class="copy-btn" id="copyBtn">Copy</button>
+        </div>
+        <div class="toast" id="toast">Copied to clipboard</div>
+      </div>
+
+      <p class="hint">Paste a certificate above — the kid is computed automatically.</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/node-forge@1.0.0/dist/forge.min.js"></script>
+    <script type="text/javascript" src="scripts/app.js"></script>
   </body>
 </html>
