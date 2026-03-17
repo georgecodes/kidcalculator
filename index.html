@@ -156,6 +156,92 @@
         font-size: 0.75rem;
         color: #3d4466;
       }
+
+      .details {
+        display: none;
+        margin-top: 1.75rem;
+        border-top: 1px solid #2d3148;
+        padding-top: 1.5rem;
+      }
+
+      .details.show {
+        display: block;
+      }
+
+      .details h2 {
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: #94a3b8;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 1rem;
+      }
+
+      .detail-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+      }
+
+      .detail-item {
+        background: #0f1117;
+        border: 1px solid #2d3148;
+        border-radius: 8px;
+        padding: 0.65rem 0.85rem;
+      }
+
+      .detail-item.full {
+        grid-column: 1 / -1;
+      }
+
+      .detail-item .detail-label {
+        font-size: 0.7rem;
+        color: #64748b;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.3rem;
+      }
+
+      .detail-item .detail-value {
+        font-family: "SF Mono", "Fira Code", "Cascadia Code", monospace;
+        font-size: 0.8rem;
+        color: #e2e8f0;
+        word-break: break-all;
+      }
+
+      .detail-item.expired .detail-value {
+        color: #f87171;
+      }
+
+      .detail-item.expiring-soon .detail-value {
+        color: #fbbf24;
+      }
+
+      .detail-item.valid .detail-value {
+        color: #34d399;
+      }
+
+      .badge {
+        display: inline-block;
+        font-size: 0.65rem;
+        padding: 0.15rem 0.5rem;
+        border-radius: 4px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        margin-left: 0.5rem;
+        vertical-align: middle;
+      }
+
+      .badge.ca {
+        background: #312e81;
+        color: #a5b4fc;
+      }
+
+      .badge.end-entity {
+        background: #1e3a2f;
+        color: #6ee7b7;
+      }
     </style>
   </head>
   <body>
@@ -176,6 +262,11 @@
       </div>
 
       <p class="hint">Paste a certificate above — the kid is computed automatically.</p>
+
+      <div class="details" id="details">
+        <h2>Certificate Details</h2>
+        <div class="detail-grid" id="detailGrid"></div>
+      </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/node-forge@1.0.0/dist/forge.min.js"></script>
